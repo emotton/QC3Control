@@ -7,6 +7,16 @@ All credits go to :
 - [Hugatry's HackVlog](https://www.youtube.com/channel/UCHgeChD442K0ah-KxEg0PHw) because he came up with the idea and first code to control QC2. 
 - Timo Engelgeer (Septillion) who made a nice wrapper for Quick Charge 2.0: [QC2Control](https://github.com/septillion-git/QC2Control). The QC3Control project is just a fork of QC2Control adapted for Quick Charge3 while retaining maximum compatibility so it can be used as a drop-in replacement.
 
+## Switching the USB-A port voltage to 9V or 12V for fast charging
+The voltage on the USB-A port is normally 5V but can be switched to 9V or 12V for fast charging.
+In order to do so, the peripheral device must communicate with the charger to grant permission for this. USB-A and USB-C use different lines here for:
+
+USB-A port 
+Uses the 2 data lines and the Quick Charge standard, developed by Qualcomm. It is the most popular fast-charging standard. It supports up to 18W (5V/3A, 9V/2A, 12V/1.5A). On the charger side, it is most often found on USB-A ports. 
+
+USB-C port 
+Uses the CC line and the Power Delivery (PD) standard.
+
 ## What does it do?
 QC3Control makes it possible to set the voltage (even on the fly) of a Quick Charge 3.0 source like a mains charger or power bank by simulating the behaviour of a QC3 portable device. 
 
