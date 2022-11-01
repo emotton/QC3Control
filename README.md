@@ -7,24 +7,25 @@ All credits go to :
 - [Hugatry's HackVlog](https://www.youtube.com/channel/UCHgeChD442K0ah-KxEg0PHw) because he came up with the idea and first code to control QC2. 
 - Timo Engelgeer (Septillion) who made a nice wrapper for Quick Charge 2.0: [QC2Control](https://github.com/septillion-git/QC2Control). The QC3Control project is just a fork of QC2Control adapted for Quick Charge3 while retaining maximum compatibility so it can be used as a drop-in replacement.
 
-## Switching the USB-A port voltage to 9V or 12V for fast charging
-The voltage on the USB-A port is normally 5V but can be switched to 9V or 12V for fast charging.
-In order to do so, the peripheral device must communicate with the charger to grant permission for this. USB-A and USB-C use different lines here for:
+## Context
+The voltage on the USB-A port is normally 5V but several solutions have been developed to enable fast charging, e.g. by switching to higher voltages.
+In order to do so, the peripheral device must communicate with the charger to grant permission for this, and USB-A and USB-C use different lines and protocols to achieve this:
 
 USB-A port 
-Uses the 2 data lines and the Quick Charge standard, developed by Qualcomm. It is the most popular fast-charging standard. It supports up to 18W (5V/3A, 9V/2A, 12V/1.5A). On the charger side, it is most often found on USB-A ports. 
+Uses the 2 data lines. One of the most popular fast-charging standards is Quick Charge, developed by [Qualcomm](https://www.qualcomm.com/). 
+QC2 supports 3 different voltages (5V/3A, 9V/2A, 12V/1.5A), while QC3 (what this project is about) supports custom voltages between 3.6V and 12V (or even 20V in class B).
 
 USB-C port 
-Uses the CC line and the Power Delivery (PD) standard.
+Uses the CC line and the [Power Delivery (PD) standard](https://fr.wikipedia.org/wiki/USB_Type-C#USB_Power_Delivery). Sorry if you came here for that purpose, QC3control will not be of any help.
 
 ## What does it do?
 QC3Control makes it possible to set the voltage (even on the fly) of a Quick Charge 3.0 source like a mains charger or power bank by simulating the behaviour of a QC3 portable device. 
 
-Of course, to take advantage of this library, the source needs to support the [Quick Charge 3.0](https://www.qualcomm.com/products/features/quick-charge) technology form [Qualcomm](https://www.qualcomm.com/). 
+Of course, to take advantage of this library, the power source must support the [Quick Charge 3.0](https://www.qualcomm.com/products/features/quick-charge) technology. 
 However, the library can also be used with a QC2.0 compatible charger if using only set5V(), set9V(), set12V(), or setVoltage(5), setVoltage(9) or setVoltage(12).
 
 ## Differences between QC2Control and QC3Control
-QC3 chargers and battery packs should be backwards compatible with QC2, but I first had to adjust the resistor values compared to the ones in QC2Control. More information on [my blog](http://blog.deconinck.info/post/2017/08/09/Turning-a-Quick-Charge-3.0-charger-into-a-variable-voltage-power-supply).
+QC3 chargers and battery packs should be backwards compatible with QC2, but I first had to adjust the resistor values compared to the ones in the QC2Control project. More information on [my blog](http://blog.deconinck.info/post/2017/08/09/Turning-a-Quick-Charge-3.0-charger-into-a-variable-voltage-power-supply).
 
 Apart from that, the main protocol difference between QC2.0 and QC3.0 is the introduction of continuous voltages, plus the possibility to lower the voltage to 3.6V.
 
